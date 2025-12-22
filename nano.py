@@ -1,13 +1,26 @@
 import json
-from abc import abstractmethod,ABC
-class Employee(ABC):
+from abc import ABC,abstractmethod
+json_data='[{"type":"saving"},{"type":"current"}]'
+class Account(ABC):
     @abstractmethod
-    def calculate_salary():
+    def get_account_type(self):
         pass
 
-class Fulltime(Employee):
-    def calculate_salary(self):
-        return 15000
+class Saving_account(Account):
+    def get_account_type(self):
+        return "this is saving account"
 
-n=Fulltime.calculate_salary()
-print(n)
+class Current_account(Account):
+    def get_account_type(self):
+        return "this is the current account"
+
+data=json.loads(json_data)
+accounts=[]
+for item in data:
+    if item["type"]=="saving":
+        accounts.append(Saving_account())
+    elif item["type"]=="current":
+        accounts.append(Current_account())
+
+for account in accounts:
+    print(account.get_account_type())
