@@ -1,0 +1,1 @@
+To save data, I implemented a to_dict() method in the Task class. This transforms the object's attributes into a standard Python dictionary, which the json.dump() method can write to a file. To load data, I read the list of dictionaries from the JSON file and passed them into a @staticmethod called from_dict(), which reinstantiates the Task objects, restoring the app's state.
